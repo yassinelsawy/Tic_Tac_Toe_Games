@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/C++ Projects/board_games/cmake-build-debug",
-		"source" : "C:/C++ Projects/board_games"
+		"build" : "C:/EL Ramly/A2_S7_Task23_B_20230465_20230220_20230416/A2_S7_Task23_B_20230465_20230220_20230416/cmake-build-debug",
+		"source" : "C:/EL Ramly/A2_S7_Task23_B_20230465_20230220_20230416/A2_S7_Task23_B_20230465_20230220_20230416"
 	},
 	"version" : 
 	{

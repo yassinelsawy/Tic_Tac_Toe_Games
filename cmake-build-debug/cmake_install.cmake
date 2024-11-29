@@ -1,4 +1,4 @@
-# Install script for directory: C:/C++ Projects/board_games
+# Install script for directory: C:/EL Ramly/A2_S7_Task23_B_20230465_20230220_20230416/A2_S7_Task23_B_20230465_20230220_20230416
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -52,6 +52,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "C:/C++ Projects/board_games/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "C:/EL Ramly/A2_S7_Task23_B_20230465_20230220_20230416/A2_S7_Task23_B_20230465_20230220_20230416/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

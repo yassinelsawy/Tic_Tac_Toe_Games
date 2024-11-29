@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/C++ Projects/board_games/cmake-build-debug"
+			"value" : "c:/EL Ramly/A2_S7_Task23_B_20230465_20230220_20230416/A2_S7_Task23_B_20230465_20230220_20230416/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -575,7 +575,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/C++ Projects/board_games/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/EL Ramly/A2_S7_Task23_B_20230465_20230220_20230416/A2_S7_Task23_B_20230465_20230220_20230416/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -647,7 +647,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/C++ Projects/board_games"
+			"value" : "C:/EL Ramly/A2_S7_Task23_B_20230465_20230220_20230416/A2_S7_Task23_B_20230465_20230220_20230416"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1291,7 +1291,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/C++ Projects/board_games/cmake-build-debug"
+			"value" : "C:/EL Ramly/A2_S7_Task23_B_20230465_20230220_20230416/A2_S7_Task23_B_20230465_20230220_20230416/cmake-build-debug"
 		},
 		{
 			"name" : "board_games_IS_TOP_LEVEL",
@@ -1315,7 +1315,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/C++ Projects/board_games"
+			"value" : "C:/EL Ramly/A2_S7_Task23_B_20230465_20230220_20230416/A2_S7_Task23_B_20230465_20230220_20230416"
 		}
 	],
 	"kind" : "cache",
