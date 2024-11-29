@@ -1,0 +1,3 @@
+C:/C++ Projects/board_games/cmake-build-debug/CMakeFiles/board_games.dir
+C:/C++ Projects/board_games/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/C++ Projects/board_games/cmake-build-debug/CMakeFiles/rebuild_cache.dir
