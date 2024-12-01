@@ -11,22 +11,7 @@ public:
    Pyramid_X_O_Board(){
        this->rows = 3;
        this->columns = 5;
-//       this->board = new T*[this->rows];
-//         for(int i = 0; i< this->rows; i++){
-//             this->board[i] = new T[this->columns];
-//             for(int j = 0; j<this->columns; j++){
-//                 if((i == 0 && j==0) || (i == 0 && j == 1) || (i == 0 && j == 3) || (i == 0 && j == 4)) {
-//                     this->board[i][j] == 'z';
-//                 }
-//                 if((i == 1 && j == 0) || (i == 1 && j == 4)){
-//                     this->board[i][j] == 'z';
-//                 }
-//                 else{
-//                     this->board[i][j] == '\0';
-//                 }
-//             }
-//         }
-//        this->n_moves = 0;
+
         int inc = 4;
         this->board = new T*[this->rows];
         for (int i = 0; i < this->rows; i++) {
@@ -64,18 +49,8 @@ public:
    }
 
     void display_board() override {
-//        for (int i = 0; i < this->rows; i++) {
-//            cout << "\n| ";
-//            for (int j = 0; j < this->columns; j++) {
-//                cout << "(" << i << "," << j << ")";
-//                cout << setw(2) << this->board[i][j] << " |";
-//            }
-//            cout << "\n-----------------------------";
-//        }
-//        cout << endl;
         for (int i = 0; i < this->rows; i++) {
             for (int j = 0; j < this->columns; j++) {
-//                cout << (this->board[i][j] == 0 ? '.' : this->board[i][j]) << " ";
                 if (this->board[i][j] == '-') cout << " ";
                 else if (this->board[i][j] == 0) cout << ".";
                 else cout << this->board[i][j];
