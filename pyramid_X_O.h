@@ -32,10 +32,10 @@ public:
         for (int i = 0; i < this->rows; i++) {
             this->board[i] = new T[this->columns];
             for (int j = 0; j < this->columns; j++) {
-                this->board[i][j] = 0;
+                this->board[i][j] = '-';
             }
             for (int j = i + (inc -= 2); j <= i + 2; j++) {
-                this->board[i][j] == '-';
+                this->board[i][j] = 0;
             }
         }
         this->n_moves = 0;
@@ -89,16 +89,21 @@ public:
 
     bool is_win() override{
        // Check rows
-       if ((this->board[1][1] == this->board[1][2] && this->board[1][2] == this->board[1][3])
-            || (this->board[2][0] == this->board[2][1] && this->board[2][1] == this->board[2][2])
-            || (this->board[2][1] == this->board[2][2] && this->board[2][2] == this->board[2][3])
-            || (this->board[2][2] == this->board[2][3] && this->board[2][3] == this->board[2][4]))
+       if ((this->board[1][1] == this->board[1][2] && this->board[1][2] == this->board[1][3] && this->board[1][3] != 0)
+            || (this->board[2][0] == this->board[2][1] && this->board[2][1] == this->board[2][2] && this->board[2][2] != 0)
+            || (this->board[2][1] == this->board[2][2] && this->board[2][2] == this->board[2][3] && this->board[2][3] != 0)
+            || (this->board[2][2] == this->board[2][3] && this->board[2][3] == this->board[2][4] && this->board[2][4] != 0)
+            ) {
+              return true;
+       }
        // Check center column
-       if (this->board[0][2] == this->board[1][2] && this->board[1][2] == this->board[2][2]);
+       if (this->board[0][2] == this->board[1][2] && this->board[1][2] == this->board[2][2] && this->board[2][2] != 0) {
+              return true;
+       }
 
        // Check diagonals
-       if ((this->board[0][2] == this->board[1][1] && this->board[1][1] == this->board[2][0]) ||
-            (this->board[0][2] == this->board[1][3] && this->board[1][3] == this->board[2][4])) {
+       if ((this->board[0][2] == this->board[1][1] && this->board[1][1] == this->board[2][0] && this->board[2][0] != 0) ||
+            (this->board[0][2] == this->board[1][3] && this->board[1][3] == this->board[2][4]) && this->board[2][4] != 0) {
              return true;
        }
        return false;
