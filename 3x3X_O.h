@@ -1,4 +1,3 @@
-
 #ifndef _3X3X_O_H
 #define _3X3X_O_H
 

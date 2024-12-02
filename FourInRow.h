@@ -4,6 +4,7 @@ using namespace std;
 
 #ifndef BOARD_GAMES_FOURINROW_H
 #define BOARD_GAMES_FOURINROW_H
+#include "BoardGame_Classes.h"
 
 
 template <typename T>
