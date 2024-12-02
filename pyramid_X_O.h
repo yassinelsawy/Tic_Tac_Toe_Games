@@ -26,12 +26,12 @@ public:
         this->n_moves = 0;
    }
 
-//   ~Pyramid_X_O_Board(){
-//       for (int i = 0; i < this->rows ; ++i) {
-//           delete [] this->board[i];
-//       }
-//       delete [] this->board;
-//   }
+   ~Pyramid_X_O_Board(){
+       for (int i = 0; i < this->rows ; ++i) {
+           delete [] this->board[i];
+       }
+       delete [] this->board;
+   }
 
    bool update_board(int x, int y, T symbol) override {
        if (!(x < 0 || x >= this->rows || y < 0 || y >= this->columns) && (this->board[x][y] == 0|| symbol == 0)) {

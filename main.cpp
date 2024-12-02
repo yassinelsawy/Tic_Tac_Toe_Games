@@ -3,6 +3,7 @@
 #include "3x3X_O.h"
 #include "5x5_XO.h"
 #include "pyramid_X_O.h"
+#include "FourInRow.h"
 
 
 using namespace std;
@@ -11,7 +12,8 @@ int main() {
     int choice;
     Player<char>* players[2];
 //    FiveByFiveBoard<char>*  B = new FiveByFiveBoard<char>();
-    Pyramid_X_O_Board<char>*  B = new Pyramid_X_O_Board<char>();
+//    Pyramid_X_O_Board<char>*  B = new Pyramid_X_O_Board<char>();
+    FourInRow<char>*  B = new FourInRow<char>();
 
     string playerXName, player2Name;
 
@@ -27,7 +29,7 @@ int main() {
 
     switch(choice) {
         case 1:
-            players[0] = new FiveByFivePlayer<char>(playerXName, 'X');
+            players[0] = new FourInRow_Player<char>(playerXName, 'X');
             break;
         default:
             cout << "Invalid choice for Player 1. Exiting the game.\n";
@@ -44,7 +46,7 @@ int main() {
 
     switch(choice) {
         case 1:
-            players[1] = new Pyramid_X_O_Player<char>(player2Name, 'O');
+            players[1] = new FourInRow_Player<char>(player2Name, 'O');
             break;
 //        case 2:
 //            players[1] = new X_O_Random_Player<char>('O');
@@ -55,8 +57,8 @@ int main() {
     }
 
     // Create the game manager and run the game
-    GameManager<char> Pyramid_X_O_Board(B, players);
-    Pyramid_X_O_Board.run();
+    GameManager<char> FourInRow(B, players);
+    FourInRow.run();
 
     // Clean up
     delete B;
