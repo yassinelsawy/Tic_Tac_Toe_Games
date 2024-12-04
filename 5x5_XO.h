@@ -101,12 +101,23 @@ public:
 //        return false;
 //    }
     bool is_win() override {
-
+        if (win && this->n_moves == 25)  {
+            return true;
+        }
         int cs1 = countSequences('X');
         int cs2 = countSequences('O');
-        return (((cs1>cs2) || (cs2>cs1)) && this->n_moves == 24);
-
-
+        if ((cs1 != cs2) && this->n_moves == 24) {
+            if (cs2 > cs1) {
+                return true;
+            }
+            else {
+                win++;
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 
     bool is_draw() override {
