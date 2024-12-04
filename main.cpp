@@ -4,61 +4,69 @@
 #include "5x5_XO.h"
 #include "pyramid_X_O.h"
 #include "FourInRow.h"
+#include "Numerical_Tic.h"
+#include "Misere_XO.h"
+#include "Word_TicTac.h"
 
 
 using namespace std;
 
 int main() {
-    int choice;
+    int choice , choice2;
     Player<char>* players[2];
-//    FiveByFiveBoard<char>*  B = new FiveByFiveBoard<char>();
+    FiveByFiveBoard<char>*  B = new FiveByFiveBoard<char>();
 //    Pyramid_X_O_Board<char>*  B = new Pyramid_X_O_Board<char>();
-    FourInRow<char>*  B = new FourInRow<char>();
+//    NumericalTicTacToe<int>*  B = new NumericalTicTacToe<int>();
+//    FourInRow<char>*  B = new FourInRow<char>();
+//   Misere_XO<char>*  B = new Misere_XO<char>();
+//    Word_TicTac<char>*  B = new Word_TicTac<char>();
 
-    string playerXName, player2Name;
+    string player1Name, player2Name;
 
     cout << "Welcome to FCAI X-O Game. :)\n";
 
     // Set up player 1
     cout << "Enter Player X name: ";
-    cin >> playerXName;
+    cin >> player1Name;
     cout << "Choose Player X type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
     cin >> choice;
-
-    switch(choice) {
-        case 1:
-            players[0] = new FourInRow_Player<char>(playerXName, 'X');
-            break;
-        default:
-            cout << "Invalid choice for Player 1. Exiting the game.\n";
-            return 1;
-    }
-
     // Set up player 2
     cout << "Enter Player 2 name: ";
     cin >> player2Name;
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cin >> choice;
+    cin >> choice2;
+
 
     switch(choice) {
         case 1:
-            players[1] = new FourInRow_Player<char>(player2Name, 'O');
+            players[0] = new FiveByFivePlayer<char>(player1Name, 'X');
             break;
-//        case 2:
-//            players[1] = new X_O_Random_Player<char>('O');
-//            break;
+        default:
+            cout << "Invalid choice for Player 1. Exiting the game.\n";
+            return 1;
+    }
+
+    char symb = 'O';
+
+    switch(choice2) {
+        case 1:
+            players[1] = new FiveByFivePlayer<char>(player2Name, 'O');
+            break;
+        case 2:
+            players[1] = new FivebyFiveRandomPlayer<char>(symb);
+            break;
         default:
             cout << "Invalid choice for Player 2. Exiting the game.\n";
             return 1;
     }
 
     // Create the game manager and run the game
-    GameManager<char> FourInRow(B, players);
-    FourInRow.run();
+    GameManager<char> FiveByFiveBoard(B, players);
+    FiveByFiveBoard.run();
 
     // Clean up
     delete B;

@@ -134,4 +134,15 @@ public:
         cin >> x >> y;
     }
 };
+
+template <typename T>
+class FourInRow_Random_Player : public RandomPlayer<T> {
+public:
+    FourInRow_Random_Player(T symbol) : RandomPlayer<T>(symbol) {}
+
+    void getmove(int &x, int &y) override {
+        x = rand() % 6;
+        y = rand() % 7;
+    }
+};
 #endif //BOARD_GAMES_FOURINROW_H

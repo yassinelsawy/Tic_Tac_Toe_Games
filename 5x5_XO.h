@@ -84,23 +84,16 @@ public:
     }
 
     bool is_win() override {
-        return (countSequences('X') > countSequences('O') || countSequences('O') > countSequences('X')) && (this->n_moves >= 24);
+        int cs1 = countSequences('X'), cs2 = countSequences('O');
+        return ((cs1 > cs2) || (cs2 > cs1)) && (this->n_moves == 24);
     }
 
     bool is_draw() override {
-        return this->n_moves >= 25;
+        return this->n_moves >= 25 && !is_win();
     }
 
     bool game_is_over() override {
         return is_win() || is_draw();
-    }
-
-    void computer_move(T symbol) {
-        int x, y;
-        do {
-            x = rand() % this->rows;
-            y = rand() % this->columns;
-        } while (!update_board(x, y, symbol));
     }
 
 
@@ -114,6 +107,17 @@ public:
     void getmove(int& x, int& y) override {
         cout << this->name << "'s turn. Enter move (row and column, 0-based): ";
         cin >> x >> y;
+    }
+};
+
+template <typename T>
+class  FivebyFiveRandomPlayer : public Player<T> {
+public:
+    FivebyFiveRandomPlayer(T symbol) : Player<T>("Random", symbol) {}
+
+    void getmove(int& x, int& y) override {
+        x = rand() % 5;
+        y = rand() % 5;
     }
 };
 

@@ -5,6 +5,13 @@ using namespace std;
 #ifndef BOARD_GAMES_PYRAMID_X_O_H
 #define BOARD_GAMES_PYRAMID_X_O_H
 
+/*
+ * - - 0 - -
+ * - 0 0 0 -
+ * 0 0 0 0 0
+ */
+
+
 template <typename T>
 class Pyramid_X_O_Board : public Board<T> {
 public:
@@ -82,7 +89,6 @@ public:
              return true;
        }
        return false;
-
    }
 
    bool is_draw() override{
@@ -93,13 +99,7 @@ public:
          return is_win() || is_draw();
     }
 
-    void computer_move(T symbol){
-        int x, y;
-        do {
-            x = rand() % this->rows;
-            y = rand() % this->columns;
-        } while (!update_board(x, y, symbol));
-    }
+
 };
 
 template <typename T>
@@ -114,6 +114,16 @@ public:
 
 };
 
+template <typename T>
+class Pyramid_X_O_Random_Player : public Player<T> {
+public:
+    Pyramid_X_O_Random_Player(T symbol) :  Player<T>("Random", symbol){}
+
+    void getmove(int& x , int& y) override{
+        x = rand() % 3;
+        y = rand() % 5;
+    }
+};
 
 
 
