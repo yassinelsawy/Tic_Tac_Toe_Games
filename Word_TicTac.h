@@ -71,7 +71,7 @@ public:
             string row;
             row += this->board[i][0]; row += this->board[i][1]; row += this->board[i][2];
             string col;
-            col += this->board[i][0]; col += this->board[i][1]; col += this->board[i][2];
+            col += this->board[0][i]; col += this->board[1][i]; col += this->board[2][i];
 
             if (dic.count(row) || dic.count(col)) return true;
         }
