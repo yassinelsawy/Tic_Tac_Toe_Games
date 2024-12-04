@@ -9,6 +9,8 @@ using namespace std;
 
 template <typename T>
 class FiveByFiveBoard : public Board<T> {
+private:
+    int win = 0;
 public:
     FiveByFiveBoard() {
         this->rows = this->columns = 5;
@@ -83,9 +85,28 @@ public:
         return count;
     }
 
+//    bool is_win() override {
+//        if (win) return true;
+//        int cs1 = countSequences('X'), cs2 = countSequences('O');
+//
+//        if ((cs1 != cs2) && (this->n_moves >= 24)) {
+//            if (!win && cs1 > cs2) {
+//                win++;
+//                return false;
+//            }
+//            else {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
     bool is_win() override {
-        int cs1 = countSequences('X'), cs2 = countSequences('O');
-        return ((cs1 > cs2) || (cs2 > cs1)) && (this->n_moves == 24);
+
+        int cs1 = countSequences('X');
+        int cs2 = countSequences('O');
+        return (((cs1>cs2) || (cs2>cs1)) && this->n_moves == 24);
+
+
     }
 
     bool is_draw() override {
