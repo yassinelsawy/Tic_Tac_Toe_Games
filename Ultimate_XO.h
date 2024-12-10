@@ -69,8 +69,8 @@ public:
             }
         }
         for (int j = c; j < c + 3; j++) {
-            if (this->board[c+0][i] == this->board[c+1][i] && this->board[c+1][i] == this->board[c+2][i] && this->board[c+0][i] != 0) {
-                return this->board[c+0][i];
+            if (this->board[r+0][j] == this->board[r+1][j] && this->board[r+1][j] == this->board[r+2][j] && this->board[r+0][j] != 0) {
+                return this->board[r+0][j];
             }
         }
 
@@ -88,17 +88,21 @@ public:
         for (int i = 0; i < 3 ; i++) {
             for (int j = 0; j < 3; j++) {
                 if (small_board[i][j] == '\0') {
-                    char c = check_win(i, j);
+                    char c = check_win(i*3, j*3);
                     small_board[i][j] = c;
-//                    for (int k = i; k < i+3; k++) {
-//                        for (int l = j; l < j+3; l++) {
-//                            char c = check_win(k, l);
-//                            small_board[i][j] = c;
-//                        }
-//                    }
                 }
             }
         }
+
+//        cout << "----------" << endl;
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                cout << small_board[i][j] << " ";
+//            }
+//            cout << endl;
+//        }
+//        cout << "----------" << endl;
+
         for (int i = 0; i < 3; i++) {
             if ((this->small_board[i][0] == this->small_board[i][1] && this->small_board[i][1] == this->small_board[i][2] && this->small_board[i][0] != 0) ||
                 (this->small_board[0][i] == this->small_board[1][i] && this->small_board[1][i] == this->small_board[2][i] && this->small_board[0][i] != 0)) {
