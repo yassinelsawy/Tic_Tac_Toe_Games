@@ -95,26 +95,20 @@ public:
         return this->n_moves;
     }
 
-//    bool is_win() override {
-//        if (win) return true;
-//        int cs1 = countSequences('X'), cs2 = countSequences('O');
-//
-//        if ((cs1 != cs2) && (this->n_moves >= 24)) {
-//            if (!win && cs1 > cs2) {
-//                win++;
-//                return false;
-//            }
-//            else {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    void assign_move(int &x, int &y) {
+        for (int i = 0; i < this->rows; i++){
+            for(int j = 0; j<this->columns; j++){
+                if(this->board[i][j] == '\0'){
+                    x = i;
+                    y = j;
+                    return;
+                }
+            }
+        }
+    }
     bool is_win() override {
-        int cs1 = countSequences('X');
-        int cs2 = countSequences('O');
-        cout << cs1 << " " << cs2 << endl;
-        if (win && this->n_moves == 24)  {
+        int cs1 = countSequences('X'), cs2 = countSequences('O');
+        if (win && this->n_moves == 25)  {
             return true;
         }
 
@@ -143,23 +137,27 @@ public:
 
 };
 
+
+
 template <typename T>
 class FiveByFivePlayer : public Player<T> {
-public:
-    FiveByFivePlayer(string name, T symbol) : Player<T>(name, symbol) {}
+private:
+    FiveByFiveBoard<T>* brd;
 
-    int getNumberOfMoves() {
-        return this->boardPtr->getMoves();
+public:
+    FiveByFivePlayer(string name, T symbol,FiveByFiveBoard<T>* board) : Player<T>(name, symbol) {
+        brd = board;
     }
+
+
     void getmove(int& x, int& y) override {
-        if(getNumberOfMoves() == 25){
-            return;
+        if(brd->getMoves() == 24){
+            brd->assign_move(x, y);
         }
         else{
             cout << this->name << "'s turn. Enter move (row and column, 0-based): ";
             cin >> x >> y;
         }
-
     }
 
 };

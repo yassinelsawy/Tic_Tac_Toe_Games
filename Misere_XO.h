@@ -47,6 +47,7 @@ public:
 
     }
     void display_board() override {
+        if (win) return;
         for (int i = 0; i < this-> rows; ++i) {
             for(int j = 0; j< this->columns; ++j){
                 cout << (this->board[i][j] == 0 ? '.' : this->board[i][j]) << " ";
@@ -55,25 +56,9 @@ public:
         }
     }
 
-//    bool is_loss(){
-//        // Check rows and columns
-//        for (int i = 0; i < this->rows; i++) {
-//            if ((this->board[i][0] == this->board[i][1] && this->board[i][1] == this->board[i][2] && this->board[i][0] != 0) ||
-//                (this->board[0][i] == this->board[1][i] && this->board[1][i] == this->board[2][i] && this->board[0][i] != 0)) {
-//                return false;
-//            }
-//        }
-//
-//        // Check diagonals
-//        if ((this->board[0][0] == this->board[1][1] && this->board[1][1] == this->board[2][2] && this->board[0][0] != 0) ||
-//            (this->board[0][2] == this->board[1][1] && this->board[1][1] == this->board[2][0] && this->board[0][2] != 0)) {
-//            return false;
-//        }
-//        return true;
-//    }
-
     bool is_win() override {
-        if (win) return true;
+        if (win)
+            return true;
         // Check rows and columns
         for (int i = 0; i < this->rows; i++) {
             if ((this->board[i][0] == this->board[i][1] && this->board[i][1] == this->board[i][2] && this->board[i][0] != 0) ||
@@ -101,19 +86,41 @@ public:
     }
 
     bool game_is_over() override {
-        return is_win() || is_draw();
+        return (win > 1) || is_draw();
+    }
+    bool getWin(){
+        return win;
+    }
+    void assign_move(int &x, int &y) {
+        for (int i = 0; i < this->rows; i++){
+            for(int j = 0; j<this->columns; j++){
+                if(this->board[i][j] == '\0'){
+                    x = i;
+                    y = j;
+                    return;
+                }
+            }
+        }
     }
 
 };
 
 template <typename T>
 class Misere_XO_Player : public Player<T> {
+private:
+    Misere_XO<T>* brd;
 public:
-    Misere_XO_Player(string name , T symbol) :  Player<T>(name , symbol){
-
+    Misere_XO_Player(string name , T symbol,Misere_XO<T>* board) :  Player<T>(name , symbol){
+        brd = board;
     }
 
     void getmove(int& x , int& y) override{
+        if(brd->getWin()){
+            brd->assign_move(x,y);
+            return;
+        }
+
+
         cout << this->name << "'s turn. Enter move (row and column, 0-based): ";
         cin >> x >> y;
     }
