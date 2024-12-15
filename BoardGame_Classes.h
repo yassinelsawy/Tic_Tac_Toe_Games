@@ -31,6 +31,8 @@ public:
 
     /// Return true if the game is over
     virtual bool game_is_over() = 0;
+
+
 };
 
 template <typename T>

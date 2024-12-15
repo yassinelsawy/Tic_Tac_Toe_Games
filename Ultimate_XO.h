@@ -37,6 +37,13 @@ public:
         delete[] this->board;
     }
 
+    bool validate_move(int x, int y, char symbol) {
+        if (x < 0 || x >= this->rows || y < 0 || y >= this->columns || this->board[x][y] != '\0' || small_board[x/3][y/3] != '\0') {
+            return false;
+        }
+        return true;
+    }
+
     bool update_board(int x, int y, char symbol) override {
         if (x < 0 || x >= this->rows || y < 0 || y >= this->columns || this->board[x][y] != '\0' || small_board[x/3][y/3] != '\0') {
             return false;
@@ -143,12 +150,20 @@ public:
 
 template <typename T>
 class Ultimate_XO_Random_Player : public Player<T> {
+private:
+    Ultimate_XO_Board<T>* brd;
 public:
-    Ultimate_XO_Random_Player(T symbol) : Player<T>("Random", symbol) {}
+    Ultimate_XO_Random_Player(T symbol, Ultimate_XO_Board<T>* board) : Player<T>("Random", symbol) {
+        brd = board;
+    }
 
     void getmove(int& x, int& y) override {
         x = rand() % 9;
         y = rand() % 9;
+        while(!brd->validate_move(x, y)) {
+            x = rand() % 9;
+            y = rand() % 9;
+        }
     }
 };
 

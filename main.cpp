@@ -8,19 +8,22 @@
 #include "Misere_XO.h"
 #include "Word_TicTac.h"
 #include "Ultimate_XO.h"
+#include "4x4_XO.h"
 
 using namespace std;
+
 
 int main() {
     int choice , choice2;
     Player<char>* players[2];
-//    FiveByFiveBoard<char>*  B = new FiveByFiveBoard<char>();
+   FiveByFiveBoard<char>*  B = new FiveByFiveBoard<char>();
 //    Pyramid_X_O_Board<char>*  B = new Pyramid_X_O_Board<char>();
 //    NumericalTicTacToe<int>*  B = new NumericalTicTacToe<int>();
 //    FourInRow<char>*  B = new FourInRow<char>();
 //   Misere_XO<char>*  B = new Misere_XO<char>();
 //    Word_TicTac<char>*  B = new Word_TicTac<char>();
-    Ultimate_XO_Board<char>*  B = new Ultimate_XO_Board<char>();
+//    Ultimate_XO_Board<char>*  B = new Ultimate_XO_Board<char>();
+   //<char>*  B = new FourByFour_XO_Board<char>();
 
     string player1Name, player2Name;
 
@@ -44,7 +47,7 @@ int main() {
 
     switch(choice) {
         case 1:
-            players[0] = new Ultimate_XO_Player<char>(player1Name, 'X');
+            players[0] = new FiveByFivePlayer<char>(player1Name, 'X');
             break;
         default:
             cout << "Invalid choice for Player 1. Exiting the game.\n";
@@ -55,7 +58,7 @@ int main() {
 
     switch(choice2) {
         case 1:
-            players[1] = new Ultimate_XO_Player<char>(player2Name, 'O');
+            players[1] = new FiveByFivePlayer<char>(player2Name, 'O');
             break;
         case 2:
             players[1] = new FivebyFiveRandomPlayer<char>(symb);
@@ -66,8 +69,8 @@ int main() {
     }
 
     // Create the game manager and run the game
-    GameManager<char> Ultimate_XO_Board(B, players);
-    Ultimate_XO_Board.run();
+    GameManager<char> FiveByFiveBoard(B, players);
+    FiveByFiveBoard.run();
 
     // Clean up
     delete B;

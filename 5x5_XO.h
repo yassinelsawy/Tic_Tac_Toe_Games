@@ -32,6 +32,9 @@ public:
     }
 
     bool update_board(int x, int y, T symbol) override {
+        if(this->n_moves == 25){
+            return true;
+        }
         if (x < 0 || x >= this->rows || y < 0 || y >= this->columns || this->board[x][y] != '\0') {
             return false;
         }
@@ -41,6 +44,9 @@ public:
     }
 
     void display_board() override {
+        if(this->n_moves == 25){
+            return;
+        }
         for (int i = 0; i < this->rows; ++i) {
             for (int j = 0; j < this->columns; ++j) {
                 cout << (this->board[i][j] == '\0' ? '.' : this->board[i][j]) << " ";
@@ -85,6 +91,10 @@ public:
         return count;
     }
 
+    int getMoves() {
+        return this->n_moves;
+    }
+
 //    bool is_win() override {
 //        if (win) return true;
 //        int cs1 = countSequences('X'), cs2 = countSequences('O');
@@ -101,11 +111,13 @@ public:
 //        return false;
 //    }
     bool is_win() override {
-        if (win && this->n_moves == 25)  {
-            return true;
-        }
         int cs1 = countSequences('X');
         int cs2 = countSequences('O');
+        cout << cs1 << " " << cs2 << endl;
+        if (win && this->n_moves == 24)  {
+            return true;
+        }
+
         if ((cs1 != cs2) && this->n_moves == 24) {
             if (cs2 > cs1) {
                 return true;
@@ -136,16 +148,28 @@ class FiveByFivePlayer : public Player<T> {
 public:
     FiveByFivePlayer(string name, T symbol) : Player<T>(name, symbol) {}
 
-    void getmove(int& x, int& y) override {
-        cout << this->name << "'s turn. Enter move (row and column, 0-based): ";
-        cin >> x >> y;
+    int getNumberOfMoves() {
+        return this->boardPtr->getMoves();
     }
+    void getmove(int& x, int& y) override {
+        if(getNumberOfMoves() == 25){
+            return;
+        }
+        else{
+            cout << this->name << "'s turn. Enter move (row and column, 0-based): ";
+            cin >> x >> y;
+        }
+
+    }
+
 };
 
 template <typename T>
 class  FivebyFiveRandomPlayer : public Player<T> {
 public:
     FivebyFiveRandomPlayer(T symbol) : Player<T>("Random", symbol) {}
+
+
 
     void getmove(int& x, int& y) override {
         x = rand() % 5;

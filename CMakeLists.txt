@@ -3,4 +3,5 @@ project(board_games)
 
 set(CMAKE_CXX_STANDARD 26)
 
-add_executable(board_games mainelramly.cpp)
+add_executable(board_games mainelramly.cpp
+        )
