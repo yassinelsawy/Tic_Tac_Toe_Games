@@ -120,7 +120,6 @@ public:
             return;
         }
 
-
         cout << this->name << "'s turn. Enter move (row and column, 0-based): ";
         cin >> x >> y;
     }

@@ -132,4 +132,5 @@ public:
         y = rand() % 3;
     }
 };
+
 #endif //BOARD_GAMES_WORD_TICTAC_H

@@ -166,4 +166,15 @@ public:
     }
 };
 
+template <typename T>
+class FourByFour_XO_Random_Player : public Player<T> {
+public:
+    FourByFour_XO_Random_Player(T symbol) : Player<T>("Random", symbol) {}
+
+    void getmove(int& x, int& y) override {
+        x = rand() % 4;
+        y = rand() % 4;
+    }
+};
+
 #endif //BOARD_GAMES_4X4_XO_H

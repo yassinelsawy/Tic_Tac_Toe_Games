@@ -153,14 +153,14 @@ class Ultimate_XO_Random_Player : public Player<T> {
 private:
     Ultimate_XO_Board<T>* brd;
 public:
-    Ultimate_XO_Random_Player(T symbol, Ultimate_XO_Board<T>* board) : Player<T>("Random", symbol) {
+    Ultimate_XO_Random_Player(string name, T symbol, Ultimate_XO_Board<T>* board) : Player<T>("Random", symbol) {
         brd = board;
     }
 
     void getmove(int& x, int& y) override {
         x = rand() % 9;
         y = rand() % 9;
-        while(!brd->validate_move(x, y)) {
+        while(!brd->validate_move(x, y, this->symbol)) {
             x = rand() % 9;
             y = rand() % 9;
         }
