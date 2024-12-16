@@ -50,18 +50,6 @@ public:
     }
 
     bool update_board(int x, int y, T symbol) override{
-//        char test[4][4] = {
-//                {'O', 0, 'X', 0},
-//                {'O', 'X', 0, 0},
-//                {'O', 0, 'O', 0},
-//                {'X', 0, 'X', 0}
-//        };
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 4; j++) {
-//                this->board[i][j] = test[i][j];
-//            }
-//        }
-//        return true;
         if (!(x < 0 || x >= this->rows || y < 0 || y >= this->columns) && (this->board[x][y] == 0 || symbol == 0)) {
             if (symbol == 0){
                 this->n_moves--;
@@ -123,25 +111,6 @@ public:
 
 
 };
-//template <typename T>
-//class FourByFour_XO_Player : public Player<T> {
-//public:
-//    FourByFour_XO_Player(string name, T symbol) : Player<T>(name, symbol) {}
-////
-////
-////    void getmove(int& x, int& y) override {
-////        cout << this->name << "'s turn. Enter a token position (row and column, 0-based): ";
-////        int a, b; cin >> a >> b;
-//////        this->boardPtr->validateToken(a, b);
-//////        setBoard(FourByFour_XO_Board<T>());
-////        cout << this->name << "'s turn. Enter move (row and column, 0-based): ";
-////        cin >> x >> y;
-////        while (!((x==a && abs(y-b) == 1) || (y==b && abs(x-a) == 1))) {
-////            cout << "Invalid move. Enter a move (row and column, 0-based): ";
-////            cin >> x >> y;
-////        }
-////    }
-//};
 
 template <typename T>
 class FourByFour_XO_Player : public Player<T> {
