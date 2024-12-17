@@ -5,12 +5,6 @@ using namespace std;
 #ifndef BOARD_GAMES_PYRAMID_X_O_H
 #define BOARD_GAMES_PYRAMID_X_O_H
 
-/*
- * - - 0 - -
- * - 0 0 0 -
- * 0 0 0 0 0
- */
-
 
 template <typename T>
 class Pyramid_X_O_Board : public Board<T> {
