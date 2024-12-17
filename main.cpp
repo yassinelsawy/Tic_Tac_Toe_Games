@@ -199,19 +199,19 @@ int main() {
             Player<int>* players_[2];
 
             NumericalTicTacToe<int>*  B = new NumericalTicTacToe<int>();
-            int symb1 = 0, symb2 = 1;
+            int symb1 = 1, symb2 = 2;
 
             if (player1Choice == "1") {
                 players_[0] = new NumericalTicTacToe_Player<int>(Player1, symb1);
             }
             else {
-                players_[0] = new NumericalTicTacToe_Random_Player<int>(symb1);
+                players_[0] = new NumericalTicTacToe_Random_Player<int>(symb1, B);
             }
             if (player2Choice == "1"){
                 players_[1] = new NumericalTicTacToe_Player<int>(Player2, symb2);
             }
             else {
-                players_[1] = new NumericalTicTacToe_Random_Player<int>(symb2);
+                players_[1] = new NumericalTicTacToe_Random_Player<int>(symb2, B);
             }
             GameManager<int> NumericalTicTacToe_Board(B, players_);
             NumericalTicTacToe_Board.run();
@@ -220,18 +220,17 @@ int main() {
 
         else if (choice == "6") {
             Misere_XO<char>*  B = new Misere_XO<char>();
-            char symb = 0;
             if (player1Choice == "1") {
-                players[0] = new Misere_XO_Player<char>(Player1, symb, B);
+                players[0] = new Misere_XO_Player<char>(Player1, 'X', B);
             }
             else {
-                players[0] = new Misere_XO_Random_Player<char>(symb);
+                players[0] = new Misere_XO_Random_Player<char>('X');
             }
             if (player2Choice == "1"){
-                players[1] = new Misere_XO_Player<char>(Player2, symb, B);
+                players[1] = new Misere_XO_Player<char>(Player2, 'O', B);
             }
             else {
-                players[1] = new Misere_XO_Random_Player<char>(symb);
+                players[1] = new Misere_XO_Random_Player<char>('O');
             }
             GameManager<char> Misere_XO_Board(B, players);
             Misere_XO_Board.run();
@@ -240,18 +239,17 @@ int main() {
         }
         else if (choice == "7") {
             Ultimate_XO_Board<char>*  B = new Ultimate_XO_Board<char>();
-            char symb = 0;
             if (player1Choice == "1") {
-                players[0] = new Ultimate_XO_Player<char>(Player1, symb);
+                players[0] = new Ultimate_XO_Player<char>(Player1, 'X');
             }
             else {
-                players[0] = new Ultimate_XO_Random_Player<char>( "Random", symb, B);
+                players[0] = new Ultimate_XO_Random_Player<char>( "Random", 'X', B);
             }
             if (player2Choice == "1"){
-                players[1] = new Ultimate_XO_Player<char>(Player2, symb);
+                players[1] = new Ultimate_XO_Player<char>(Player2, 'O');
             }
             else {
-                players[1] = new Ultimate_XO_Random_Player<char>("Random",symb, B);
+                players[1] = new Ultimate_XO_Random_Player<char>("Random", 'O', B);
             }
             GameManager<char> Ultimate_XO_Board(B, players);
             Ultimate_XO_Board.run();
@@ -265,13 +263,13 @@ int main() {
                 players[0] = new FourByFour_XO_Player<char>(Player1, 'X', B);
             }
             else {
-                players[0] = new FourByFour_XO_Random_Player<char>('X');
+                players[0] = new FourByFour_XO_Random_Player<char>('X', B);
             }
             if (player2Choice == "1"){
                 players[1] = new FourByFour_XO_Player<char>(Player2, 'O', B);
             }
             else {
-                players[1] = new FourByFour_XO_Random_Player<char>('O');
+                players[1] = new FourByFour_XO_Random_Player<char>('O', B);
             }
             GameManager<char> FourByFour_XO_Board(B, players);
             FourByFour_XO_Board.run();

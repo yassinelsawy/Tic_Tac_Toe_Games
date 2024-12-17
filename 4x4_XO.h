@@ -42,11 +42,18 @@ public:
         delete[] this->board;
     }
 
-    void validate_token(int& x, int& y, T symbol) {
-        while (x < 0 || x >= 4 || y < 0 || y >= 4 || this->board[x][y] != symbol) {
-            cout << "Invalid token position. Enter a token position (row and column, 0-based): ";
-            cin >> x >> y;
+    bool validate_token(int& x, int& y, T symbol) {
+        if (x < 0 || x >= 4 || y < 0 || y >= 4 || this->board[x][y] != symbol) {
+            return false;
         }
+        return true;
+    }
+
+    bool validate_move(int x, int y, T symbol) {
+        if (x < 0 || x >= this->rows || y < 0 || y >= this->columns || this->board[x][y] != 0) {
+            return false;
+        }
+        return true;
     }
 
     bool update_board(int x, int y, T symbol) override{
@@ -114,7 +121,7 @@ public:
     }
 
     bool is_draw() override {
-        return this->n_moves == 16 && !is_win();
+        return false;
     }
 
     bool game_is_over() override {
@@ -154,8 +161,13 @@ public:
 
     void getmove(int& x, int& y) override {
         cout << this->name << "'s turn. Enter a token position (row and column, 0-based): ";
-        int a, b; cin >> a >> b;
+        int a, b;
+        cin >> a >> b;
         brd->validate_token(a, b, this->symbol);
+        while (!brd->validate_token(a, b, this->symbol)) {
+            cout << "Invalid token position. Enter a token position (row and column, 0-based): ";
+            cin >> a >> b;
+        }
         brd->delete_old(a, b);
         cout << this->name << "'s turn. Enter move (row and column, 0-based): ";
         cin >> x >> y;
@@ -168,12 +180,26 @@ public:
 
 template <typename T>
 class FourByFour_XO_Random_Player : public Player<T> {
+private:
+    FourByFour_XO_Board<T>* brd;
 public:
-    FourByFour_XO_Random_Player(T symbol) : Player<T>("Random", symbol) {}
+    FourByFour_XO_Random_Player(T symbol, FourByFour_XO_Board<T>* board) : Player<T>("Random", symbol) {
+        brd = board;
+    }
 
     void getmove(int& x, int& y) override {
-        x = rand() % 4;
-        y = rand() % 4;
+        int a, b;
+        srand(time(0));
+        do {
+            a = rand() % 4;
+            b = rand() % 4;
+        } while (!brd->validate_token(a, b, this->symbol));
+        brd->delete_old(a, b);
+
+        do {
+            x = rand() % 4;
+            y = rand() % 4;
+        } while (!((x == a && abs(y - b) == 1) || (y == b && abs(x - a) == 1)) || !brd->validate_move(x, y, this->symbol));
     }
 };
 

@@ -158,12 +158,13 @@ public:
     }
 
     void getmove(int& x, int& y) override {
-        x = rand() % 9;
-        y = rand() % 9;
-        while(!brd->validate_move(x, y, this->symbol)) {
+        srand(time(0));
+
+        do {
             x = rand() % 9;
             y = rand() % 9;
         }
+        while(!brd->validate_move(x, y, this->symbol));
     }
 };
 

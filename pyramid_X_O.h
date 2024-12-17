@@ -120,6 +120,7 @@ public:
     Pyramid_X_O_Random_Player(T symbol) :  Player<T>("Random", symbol){}
 
     void getmove(int& x , int& y) override{
+        srand(time(0));
         x = rand() % 3;
         y = rand() % 5;
     }

@@ -141,6 +141,7 @@ public:
     FourInRow_Random_Player(T symbol) : RandomPlayer<T>(symbol) {}
 
     void getmove(int &x, int &y) override {
+        srand(time(0));
         x = rand() % 6;
         y = rand() % 7;
     }

@@ -91,6 +91,10 @@ public:
     bool getWin(){
         return win;
     }
+
+    int getMoves() {
+        return this->n_moves;
+    }
     void assign_move(int &x, int &y) {
         for (int i = 0; i < this->rows; i++){
             for(int j = 0; j<this->columns; j++){
@@ -115,8 +119,10 @@ public:
     }
 
     void getmove(int& x , int& y) override{
-        if(brd->getWin()){
-            brd->assign_move(x,y);
+        if(brd->getWin() && brd->getMoves() <= 9){
+            if (brd->getMoves() < 9) {
+                brd->assign_move(x,y);
+            }
             return;
         }
 
@@ -132,6 +138,7 @@ public:
     Misere_XO_Random_Player(T symbol) :  Player<T>("Random", symbol){}
 
     void getmove(int& x , int& y) override{
+        srand(time(0));
         x = rand() % 3;
         y = rand() % 3;
     }

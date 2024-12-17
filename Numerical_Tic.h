@@ -64,6 +64,7 @@ public:
         for (int i = 0; i <this->rows ; ++i) {
             int sum = 0;
             for(int j = 0; j < this->columns; ++j){
+                if (this->board[i][j] == 0) break;
                 sum += this->board[i][j];
             }
             if(sum == 15) return true;
@@ -73,6 +74,7 @@ public:
         for (int i = 0; i <this->columns ; ++i) {
             int sum = 0;
             for (int j = 0; j <this->rows; ++j) {
+                if (this->board[i][j] == 0) break;
                 sum += this->board[j][i];
             }
             if(sum == 15) return true;
@@ -102,7 +104,12 @@ public:
         return is_win() || is_draw();
     }
 
-
+    bool validate_move(int x, int y, T symbol) {
+        if (x < 0 || x >= this->rows || y < 0 || y >= this->columns || this->board[x][y] != 0) {
+            return false;
+        }
+        return true;
+    }
 };
 
 template <typename T>
@@ -120,7 +127,8 @@ public:
                 cin >> symbol;
 
             }while(symbol < 1 || symbol > 9 || symbol % 2 == 0 || used.count(symbol));
-        }else{
+        }
+        else{
             do{
                 cout << "Enter the number you want to put (2 to 8): ";
                 cin >> symbol;
@@ -139,15 +147,35 @@ public:
 
 template <typename T>
 class NumericalTicTacToe_Random_Player : public Player<T> {
+private:
+    set <int> used;
+    NumericalTicTacToe<T>* brd;
 public:
-    NumericalTicTacToe_Random_Player(T symbol) : Player<T>("Computer", symbol) {}
+    NumericalTicTacToe_Random_Player(T symbol, NumericalTicTacToe<T>* board) : Player<T>("Computer", symbol) {
+        brd = board;
+    }
 
     void getmove(int& x, int& y) override {
-        this->symbol = (rand() % 9);
-        if (this->symbol % 2 == 1) this->symbol++;
-        this->symbol %= 8;
-        x = rand() % 3;
-        y = rand() % 3;
+        int p = this->symbol;
+        srand(time(0));
+        if(p % 2 == 1) {
+            do {
+                this->symbol = (rand() % 10);
+            } while (this->symbol < 1 || this->symbol > 9 || this->symbol % 2 == 0 || this->used.count(this->symbol));
+        }
+        else {
+            do {
+                this->symbol = (rand() % 9);
+            }
+            while (this->symbol < 2 || this->symbol > 8 || this->symbol % 2 != 0 || this->used.count(this->symbol));
+        }
+        used.insert(this->symbol);
+
+        do {
+            x = rand() % 3;
+            y = rand() % 3;
+        }
+        while (!brd->validate_move(x, y, this->symbol));
     }
 };
 

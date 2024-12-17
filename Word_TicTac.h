@@ -127,6 +127,7 @@ public:
     }
 
     void getmove(int& x, int& y) override {
+        srand(time(0));
         this->symbol = (rand() % 26) + 65;
         x = rand() % 3;
         y = rand() % 3;

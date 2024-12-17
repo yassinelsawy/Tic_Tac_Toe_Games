@@ -170,6 +170,7 @@ public:
 
 
     void getmove(int& x, int& y) override {
+        srand(time(0));
         x = rand() % 5;
         y = rand() % 5;
     }
