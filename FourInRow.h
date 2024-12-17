@@ -114,14 +114,6 @@ public:
     bool game_is_over() override {
         return is_win() || is_draw();
     }
-
-    void computer_move(T symbol){
-        int x, y;
-        do {
-            x = rand() % this->rows;
-            y = rand() % this->columns;
-        } while (!update_board(x, y, symbol));
-    }
 };
 
 template <typename T>

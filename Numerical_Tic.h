@@ -30,7 +30,6 @@ public:
     }
 
 
-
     bool update_board(int x, int y, T symbol) override{
         if (!(x < 0 || x >= this->rows || y < 0 || y >= this->columns) && (this->board[x][y] == 0 || symbol == 0)) {
             if (symbol == 0){
@@ -47,6 +46,7 @@ public:
         return false;
     }
 
+
     void display_board() override {
         for (int i = 0; i < this-> rows; ++i) {
             for(int j = 0; j< this->columns; ++j){
@@ -57,6 +57,7 @@ public:
             cout << endl;
         }
     }
+
 
     bool is_win() override{
 
@@ -82,12 +83,14 @@ public:
         // Check diagonals
         int sum = 0;
         for (int i = 0; i < this->rows; i++) {
+            if (this->board[i][i] == 0) break;
             sum += this->board[i][i];
         }
         if (sum == 15) return true;
 
         sum = 0;
         for (int i = 0; i < this->rows; i++) {
+            if (this->board[i][this->columns - i - 1] == 0) break;
             sum += this->board[i][this->columns - i - 1];
         }
         if (sum == 15) return true;
@@ -96,13 +99,16 @@ public:
 
     }
 
+
     bool is_draw() override{
         return (this->n_moves == 9 && !is_win());
     }
 
+
     bool game_is_over() override {
         return is_win() || is_draw();
     }
+
 
     bool validate_move(int x, int y, T symbol) {
         if (x < 0 || x >= this->rows || y < 0 || y >= this->columns || this->board[x][y] != 0) {
@@ -111,6 +117,7 @@ public:
         return true;
     }
 };
+
 
 template <typename T>
 class NumericalTicTacToe_Player : public Player<T> {
