@@ -93,12 +93,20 @@ int main() {
         getline(cin, choice);
         getChoice({"1", "2", "3", "4", "5", "6", "7", "8", "9"}, choice);
 
+
         vector <string> playerChoices = {"Human", "Random Computer"};
         string player1Choice, player2Choice;
 
 
         string Player1 , Player2;
         Player<char>* players[2];
+        if (choice == "9") {
+            // Clean up
+            for (int i = 0; i < 2; ++i) {
+                delete players[i];
+            }
+            return 0;
+        }
 
         // Set up player 1
         cout << "Enter Player X name: ";
@@ -275,13 +283,6 @@ int main() {
             FourByFour_XO_Board.run();
             delete B;
 
-        }
-        else if (choice == "9") {
-            // Clean up
-            for (int i = 0; i < 2; ++i) {
-                delete players[i];
-            }
-            return 0;
         }
         cin.ignore();
     }
