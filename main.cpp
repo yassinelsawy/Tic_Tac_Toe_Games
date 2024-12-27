@@ -25,23 +25,23 @@ using namespace std;
 #define BOLD "\033[1m"
 #define UNDERLINE "\033[4m"
 //If color codes are not working properly uncomment the next section
-// #define RESET ""
-// #define BLACK ""
-// #define WHITE ""
-// #define RED ""
-// #define YELLOW ""
-// #define GREEN ""
-// #define CYAN ""
-// #define BLUE ""
-// #define MAGENTA ""
-// #define BOLD ""
+//  #define RESET ""
+//  #define BLACK ""
+//  #define WHITE ""
+//  #define RED ""
+//  #define YELLOW ""
+//  #define GREEN ""
+//  #define CYAN ""
+//  #define BLUE ""
+//  #define MAGENTA ""
+//  #define BOLD ""
+//  #define UNDERLINE ""
 // #define UNDERLINE ""
-//#define UNDERLINE ""
 
 void getChoice(vector <string> choices, string &choice) {
     while (find(choices.begin(), choices.end(), choice) == choices.end()) {
         cout << RED << "!! Invalid input, please enter a valid choice\n" << RESET
-             << CYAN << ">> " << RESET;
+             << CYAN << ">>" << RESET;
         getline(cin, choice);
     }
 }
@@ -59,7 +59,7 @@ void numberChecker(string &number) {
             break;
         }
         cout << RED << "!! Invalid input, please enter a valid number\n" << RESET
-             << CYAN << ">> " << RESET;
+             << CYAN << ">>" << RESET;
         getline(cin, number);
     }
 }
@@ -70,7 +70,7 @@ void printChoices(vector <string> choices) {
         cout << BLUE << i + 1 << ") " << RESET << choices[i] << endl;
     }
     cout << "<< Choose an option >>\n";
-    cout << CYAN << ">> " << RESET;
+    cout << CYAN << ">>" << RESET;
 }
 
 int main() {

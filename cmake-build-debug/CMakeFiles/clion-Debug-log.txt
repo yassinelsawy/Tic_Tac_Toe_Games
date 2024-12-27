@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2024.1.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S "D:\FCAI\2nd Year\1st Semster\OOP\Assign 2\Task 2\A2_S7_Task23_B_20230465_20230220_20230416" -B "D:\FCAI\2nd Year\1st Semster\OOP\Assign 2\Task 2\A2_S7_Task23_B_20230465_20230220_20230416\cmake-build-debug"
+"C:\Program Files\JetBrains\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\DELL\Documents\GitHub\A2_S7_Task23_B_20230465_20230220_20230416 -B C:\Users\DELL\Documents\GitHub\A2_S7_Task23_B_20230465_20230220_20230416\cmake-build-debug
 CMake Deprecation Warning:
   Support for "Extra Generators" like
 
@@ -8,7 +8,6 @@ CMake Deprecation Warning:
   use the cmake-file-api(7) to view CMake-generated project build trees.
 
 
-CMake Error: CMake was unable to find a build program corresponding to "MinGW Makefiles".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.
-CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
--- Configuring incomplete, errors occurred!
+-- Configuring done (0.6s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/DELL/Documents/GitHub/A2_S7_Task23_B_20230465_20230220_20230416/cmake-build-debug
