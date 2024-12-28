@@ -6,6 +6,35 @@ using namespace std;
 #ifndef BOARD_GAMES_ULTIMATE_XO_H
 #define BOARD_GAMES_ULTIMATE_XO_H
 
+
+//=== Text Formatting ===
+#define RESET "\033[0m"
+#define BLACK "\033[30m"
+#define WHITE "\033[37m"
+#define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define GREEN "\033[32m"
+#define CYAN "\033[36m"
+#define BLUE "\033[34m"
+#define MAGENTA "\033[35m"
+
+#define BOLD "\033[1m"
+#define UNDERLINE "\033[4m"
+
+//If color codes are not working properly uncomment the next section
+//  #define RESET ""
+//  #define BLACK ""
+//  #define WHITE ""
+//  #define RED ""
+//  #define YELLOW ""
+//  #define GREEN ""
+//  #define CYAN ""
+//  #define BLUE ""
+//  #define MAGENTA ""
+//  #define BOLD ""
+//  #define UNDERLINE ""
+// #define UNDERLINE ""
+
 template <typename T>
 class Ultimate_XO_Board : public Board<char> {
 private:
@@ -54,18 +83,32 @@ public:
     }
 
     void display_board() override {
-        for (int i = 0; i < this->rows; ++i) {
-            if (i % 3 == 0 && i != 0) {
-                cout << "------+-------+------" << endl;
+        cout << BLUE << string(60, '=') << RESET << "\n";
+        cout << "   ";
+        for (int i = 0; i < this->columns; ++i) {
+            cout << MAGENTA << setw(2) << i << setw(2) << " " << RESET;
+            if ((i + 1) % 3 == 0 && i != this->columns - 1) {
+                cout << " ";
             }
-            for (int j = 0; j < this->columns; ++j) {
-                if (j % 3 == 0 && j != 0) {
-                    cout << "| ";
-                }
-                cout << (this->board[i][j] == '\0' ? '.' : this->board[i][j]) << " ";
-            }
-            cout << endl;
         }
+        cout << "\n  " << YELLOW << BOLD << setfill('-') << setw(39) << "-" << RESET << setfill(' ') << "\n";
+
+        for (int i = 0; i < this->rows; ++i) {
+            cout << MAGENTA << i << RESET << " " << YELLOW << BOLD << "|" << RESET;
+            for (int j = 0; j < this->columns; ++j) {
+                string color = (this->board[i][j] == 'O') ? RED : GREEN;
+                cout << " " << (this->board[i][j] == '\0' ? BLACK "_" RESET : color + string(1, this->board[i][j]) + RESET) << " " << BOLD;
+                if (j == this->columns - 1) cout << YELLOW;
+                cout << "|" << RESET;
+                if ((j + 1) % 3 == 0 && j != this->columns - 1) {
+                    cout << BOLD << "|" << RESET;
+                }
+            }
+            cout << "\n  ";
+            if ((i + 1) % 3 == 0) cout << YELLOW;
+            cout << BOLD << setfill('-') << setw(39) << "-" << RESET << setfill(' ') << "\n"; // Inner and bottom borders
+        }
+        cout << BLUE << string(60, '=') << RESET << "\n";
     }
 
     char check_win(int r, int c) {
@@ -133,7 +176,7 @@ public:
     Ultimate_XO_Player(string name, T symbol) : Player<T>(name, symbol) {}
 
     void getmove(int& x, int& y) override {
-        cout << this->name << " enter your move (x y): ";
+        cout << this->name << "'s turn. Enter move (row and column, 0-based): ";
         cin >> x >> y;
     }
 

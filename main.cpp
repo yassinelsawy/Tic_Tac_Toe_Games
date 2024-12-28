@@ -24,6 +24,7 @@ using namespace std;
 
 #define BOLD "\033[1m"
 #define UNDERLINE "\033[4m"
+
 //If color codes are not working properly uncomment the next section
 //  #define RESET ""
 //  #define BLACK ""

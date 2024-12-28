@@ -6,6 +6,35 @@ using namespace std;
 #ifndef BOARD_GAMES_4X4_XO_H
 #define BOARD_GAMES_4X4_XO_H
 
+
+//=== Text Formatting ===
+#define RESET "\033[0m"
+#define BLACK "\033[30m"
+#define WHITE "\033[37m"
+#define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define GREEN "\033[32m"
+#define CYAN "\033[36m"
+#define BLUE "\033[34m"
+#define MAGENTA "\033[35m"
+
+#define BOLD "\033[1m"
+#define UNDERLINE "\033[4m"
+
+//If color codes are not working properly uncomment the next section
+//  #define RESET ""
+//  #define BLACK ""
+//  #define WHITE ""
+//  #define RED ""
+//  #define YELLOW ""
+//  #define GREEN ""
+//  #define CYAN ""
+//  #define BLUE ""
+//  #define MAGENTA ""
+//  #define BOLD ""
+//  #define UNDERLINE ""
+// #define UNDERLINE ""
+
 template <typename T>
 class FourByFour_XO_Board : public Board<T> {
 public:
@@ -78,12 +107,19 @@ public:
     }
 
     void display_board() override {
-        for (int i = 0; i < this-> rows; ++i) {
-            for(int j = 0; j< this->columns; ++j){
-                cout << (this->board[i][j] == 0 ? '.' : this->board[i][j]) << " ";
+        cout << BLUE << string(60, '=') << RESET << "\n";
+        cout << "   " << MAGENTA << BOLD << setw(2) << "0" << setw(4) << "1" << setw(4) << "2" << setw(4) << "3" << RESET << "\n";
+        cout << "  " << BOLD << setfill('-') << setw(17) << "-" << RESET << setfill(' ') << "\n";
+
+        for (int i = 0; i < this->rows; ++i) {
+            cout << MAGENTA << BOLD << i << RESET << " |" << RESET;
+            for (int j = 0; j < this->columns; ++j) {
+                string color = (this->board[i][j] == 'X') ? GREEN : (this->board[i][j] == 'O') ? RED : BLACK;
+                cout << " " << (this->board[i][j] == 0 ? BLACK "_" RESET : color + string(1, this->board[i][j]) + RESET) << " " << BOLD << "|" << RESET;
             }
-            cout << endl;
+            cout << BOLD << " " << RESET << "\n  " << BOLD << setfill('-') << setw(17) << "-" << RESET << setfill(' ') << "\n";
         }
+        cout << BLUE << string(60, '=') << RESET << "\n";
     }
 
     bool is_win() override {

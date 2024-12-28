@@ -5,6 +5,33 @@ using namespace std;
 #ifndef BOARD_GAMES_PYRAMID_X_O_H
 #define BOARD_GAMES_PYRAMID_X_O_H
 
+//=== Text Formatting ===
+#define RESET "\033[0m"
+#define BLACK "\033[30m"
+#define WHITE "\033[37m"
+#define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define GREEN "\033[32m"
+#define CYAN "\033[36m"
+#define BLUE "\033[34m"
+#define MAGENTA "\033[35m"
+
+#define BOLD "\033[1m"
+#define UNDERLINE "\033[4m"
+
+//If color codes are not working properly uncomment the next section
+//  #define RESET ""
+//  #define BLACK ""
+//  #define WHITE ""
+//  #define RED ""
+//  #define YELLOW ""
+//  #define GREEN ""
+//  #define CYAN ""
+//  #define BLUE ""
+//  #define MAGENTA ""
+//  #define BOLD ""
+//  #define UNDERLINE ""
+// #define UNDERLINE ""
 
 template <typename T>
 class Pyramid_X_O_Board : public Board<T> {
@@ -50,16 +77,22 @@ public:
    }
 
     void display_board() override {
+        cout << BLUE << string(60, '=') << RESET << "\n";
+        cout << MAGENTA << setw(5) << "0" << setw(4) << "1" << setw(4) << "2" << setw(4) << "3" << setw(4) << "4" << RESET << "\n";
+        cout << string(10, ' ') << BOLD << setfill('-') << setw(5) << "-" << RESET << setfill(' ') << "\n";
         for (int i = 0; i < this->rows; i++) {
+            int num = 6 - 3 * i;
+            if (i == 1) num++;
+            cout << MAGENTA << i << RESET << " " << string(num, ' ') << setw(num) << BOLD << "|";
             for (int j = 0; j < this->columns; j++) {
-                if (this->board[i][j] == '-') cout << " ";
-                else if (this->board[i][j] == 0) cout << ".";
-                else cout << this->board[i][j];
-                cout << " ";
+                if (!(this->board[i][j] == '-')) {
+                    string color = (this->board[i][j] == 'X') ? GREEN : RED;
+                    cout << " " << (this->board[i][j] == 0 ? string(BLACK "_") + RESET : color + string(1, this->board[i][j]) + RESET) << " " << BOLD << "|";
+                }
             }
-            cout << endl;
+            cout << RESET << "\n" << string(4 - 2 * i + 2, ' ') << BOLD << setfill('-') << setw(25 - 4 * (this->rows - i)) << "-" << RESET << setfill(' ') << "\n";
         }
-
+        cout << BLUE << string(60, '=') << RESET << "\n";
     }
 
 
